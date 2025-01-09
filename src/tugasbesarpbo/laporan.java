@@ -140,7 +140,6 @@ koneksiDatabase db = new koneksiDatabase();
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         hasilPemasukan = new javax.swing.JLabel();
         hasilAset = new javax.swing.JLabel();
@@ -156,6 +155,7 @@ koneksiDatabase db = new koneksiDatabase();
         rfLaporan = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         rataRata = new javax.swing.JLabel();
+        rataRata1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         buttonKembali = new javax.swing.JMenuItem();
@@ -167,14 +167,10 @@ koneksiDatabase db = new koneksiDatabase();
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Dashboard Si Jagu");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesarpbo/sidebar.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesarpbo/navbar.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 0, 771, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 771, -1));
 
         hasilPemasukan.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         hasilPemasukan.setText("jLabel5");
@@ -183,18 +179,18 @@ koneksiDatabase db = new koneksiDatabase();
                 hasilPemasukanMouseEntered(evt);
             }
         });
-        getContentPane().add(hasilPemasukan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 160, 70));
+        getContentPane().add(hasilPemasukan, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 160, 70));
 
         hasilAset.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         hasilAset.setText("d");
-        getContentPane().add(hasilAset, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 160, 60));
+        getContentPane().add(hasilAset, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 160, 60));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesarpbo/hasilAset.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
 
         hasilSimpanan.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         hasilSimpanan.setText("jLabel7");
-        getContentPane().add(hasilSimpanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 130, 40));
+        getContentPane().add(hasilSimpanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 130, 40));
 
         tableHasilLaporan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -209,11 +205,11 @@ koneksiDatabase db = new koneksiDatabase();
         ));
         jScrollPane1.setViewportView(tableHasilLaporan);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 920, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 920, 270));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesarpbo/formPemasukan.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 240, 130));
-        getContentPane().add(formCariLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 240, 150, 40));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 240, 130));
+        getContentPane().add(formCariLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 150, 40));
 
         cariData.setText("Cari Data");
         cariData.addActionListener(new java.awt.event.ActionListener() {
@@ -221,11 +217,11 @@ koneksiDatabase db = new koneksiDatabase();
                 cariDataActionPerformed(evt);
             }
         });
-        getContentPane().add(cariData, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 240, 90, 40));
+        getContentPane().add(cariData, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 240, 90, 40));
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 220, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesarpbo/hasilSimpanan.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
         rfLaporan.setText("refresh laporan");
         rfLaporan.addActionListener(new java.awt.event.ActionListener() {
@@ -233,16 +229,21 @@ koneksiDatabase db = new koneksiDatabase();
                 rfLaporanActionPerformed(evt);
             }
         });
-        getContentPane().add(rfLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 253, -1, 30));
+        getContentPane().add(rfLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel8.setText("Rata rata pengeluaran");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, -1, -1));
 
         rataRata.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         rataRata.setForeground(new java.awt.Color(255, 102, 102));
         rataRata.setText("jLabel9");
-        getContentPane().add(rataRata, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 120, -1, -1));
+        getContentPane().add(rataRata, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 120, 130, -1));
+
+        rataRata1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        rataRata1.setForeground(new java.awt.Color(255, 102, 102));
+        rataRata1.setText("Rp");
+        getContentPane().add(rataRata1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 120, -1, -1));
 
         jMenu1.setText("Menu");
 
@@ -337,7 +338,6 @@ koneksiDatabase db = new koneksiDatabase();
     private javax.swing.JLabel hasilPemasukan;
     private javax.swing.JLabel hasilSimpanan;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -348,6 +348,7 @@ koneksiDatabase db = new koneksiDatabase();
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel rataRata;
+    private javax.swing.JLabel rataRata1;
     private javax.swing.JButton rfLaporan;
     private javax.swing.JTable tableHasilLaporan;
     // End of variables declaration//GEN-END:variables
