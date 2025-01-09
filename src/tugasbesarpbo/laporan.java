@@ -7,7 +7,9 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import tugasbesarpbo.koneksiDatabase;
 import static tugasbesarpbo.koneksiDatabase.mysqlconfig;
 /**
@@ -23,8 +25,77 @@ koneksiDatabase db = new koneksiDatabase();
     public laporan() {
         initComponents();
         hasilSeluruhPemasukan();
+        bacaHasilLaporan();
         hasilSeluruhAset();
+        searchDataLaporan();
+        rbdana();
+        rataRata();
     }
+    
+     private void hasilLaporan(){
+         try {
+              String sql = "insert into `laporan`(total_pemasukan,total_pengeluaran, total_aset)" +
+                      "select(select sum(jumlahPemasukan) from `pemasukan`) as total_pemasukan," + 
+                      "(select sum(jumlahPengeluaran) from `pengeluaran`) as total_pengeluaran," + 
+                      "(select sum(nilaiAset) from `aset`) as total_aset";
+            PreparedStatement pst = db.configDB().prepareStatement(sql);
+            pst.executeUpdate();
+         } catch (Exception e) {
+         }
+    }
+     
+    private void rbdana(){
+     try {
+              String sql = "select sum(jumlahDanaDarurat) from danadarurat"; 
+//                      " join danadarurat using(id_danaDarurat) " + 
+//                      "join rencanabudget using(id_rencanaBudget)";
+            java.sql.Connection conn = new koneksiDatabase().configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {            
+            hasilSimpanan.setText(res.getString(1));
+        }
+        } catch (Exception e) {
+        }
+    }
+    
+    
+    private void bacaHasilLaporan(){
+    DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("id_laporan");
+            model.addColumn("Jumlah Pemasukan");
+            model.addColumn("Jumlah Pengeluaran");
+            model.addColumn("Jumlah Aset");
+
+        try {
+            String sql = "SELECT * FROM `laporan`";
+            java.sql.Connection conn = new koneksiDatabase().configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {            
+            model.addRow(new Object[]{res.getString(1),res.getString(2),res.getString(3), res.getString(4), res.getString(5)});
+        }
+            tableHasilLaporan.setModel(model);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
+    }
+    
+    private void rataRata(){
+         try {
+              String sql = "select round(sum(jumlahPengeluaran),3) from pengeluaran"; 
+//                      " join danadarurat using(id_danaDarurat) " + 
+//                      "join rencanabudget using(id_rencanaBudget)";
+            java.sql.Connection conn = new koneksiDatabase().configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {            
+            rataRata.setText(res.getString(1));
+        }
+        } catch (Exception e) {
+        }
+    }
+    
     private void hasilSeluruhPemasukan(){
    try {
               String sql = "SELECT sum(jumlahPemasukan) FROM `pemasukan`";
@@ -37,6 +108,15 @@ koneksiDatabase db = new koneksiDatabase();
         } catch (Exception e) {
         }
     }
+    
+    private void searchDataLaporan(){
+     DefaultTableModel ob = (DefaultTableModel) tableHasilLaporan.getModel();
+        TableRowSorter<DefaultTableModel> obj = new TableRowSorter<>(ob);
+        tableHasilLaporan.setRowSorter(obj);
+        obj.setRowFilter(RowFilter.regexFilter(formCariLaporan.getText()));
+    }
+    
+   
     
     private void hasilSeluruhAset(){
    try {
@@ -66,12 +146,16 @@ koneksiDatabase db = new koneksiDatabase();
         hasilAset = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         hasilSimpanan = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableHasilLaporan = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        formCariLaporan = new javax.swing.JTextField();
+        cariData = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        rfLaporan = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        rataRata = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         buttonKembali = new javax.swing.JMenuItem();
@@ -103,50 +187,62 @@ koneksiDatabase db = new koneksiDatabase();
 
         hasilAset.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         hasilAset.setText("d");
-        getContentPane().add(hasilAset, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 160, 60));
+        getContentPane().add(hasilAset, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 160, 60));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesarpbo/hasilAset.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
 
-        hasilSimpanan.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        hasilSimpanan.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         hasilSimpanan.setText("jLabel7");
-        getContentPane().add(hasilSimpanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, -1, -1));
+        getContentPane().add(hasilSimpanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 130, 40));
+
+        tableHasilLaporan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tableHasilLaporan);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 920, 270));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesarpbo/formPemasukan.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 240, 130));
+        getContentPane().add(formCariLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 240, 150, 40));
+
+        cariData.setText("Cari Data");
+        cariData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariDataActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cariData, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 240, 90, 40));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 220, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesarpbo/hasilSimpanan.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        rfLaporan.setText("refresh laporan");
+        rfLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rfLaporanActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
+        getContentPane().add(rfLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 253, -1, 30));
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 490, 270));
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel8.setText("Rata rata pengeluaran");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesarpbo/formPemasukan.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 240, 130));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 230, 390, 270));
+        rataRata.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        rataRata.setForeground(new java.awt.Color(255, 102, 102));
+        rataRata.setText("jLabel9");
+        getContentPane().add(rataRata, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 120, -1, -1));
 
         jMenu1.setText("Menu");
 
@@ -188,6 +284,15 @@ koneksiDatabase db = new koneksiDatabase();
        
     }//GEN-LAST:event_hasilPemasukanMouseEntered
 
+    private void cariDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariDataActionPerformed
+        searchDataLaporan();
+    }//GEN-LAST:event_cariDataActionPerformed
+
+    private void rfLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfLaporanActionPerformed
+       hasilLaporan();
+       bacaHasilLaporan();
+    }//GEN-LAST:event_rfLaporanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -226,6 +331,8 @@ koneksiDatabase db = new koneksiDatabase();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem buttonKeluar;
     private javax.swing.JMenuItem buttonKembali;
+    private javax.swing.JButton cariData;
+    private javax.swing.JTextField formCariLaporan;
     private javax.swing.JLabel hasilAset;
     private javax.swing.JLabel hasilPemasukan;
     private javax.swing.JLabel hasilSimpanan;
@@ -235,11 +342,13 @@ koneksiDatabase db = new koneksiDatabase();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel rataRata;
+    private javax.swing.JButton rfLaporan;
+    private javax.swing.JTable tableHasilLaporan;
     // End of variables declaration//GEN-END:variables
 }

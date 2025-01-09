@@ -367,7 +367,7 @@ float jumlahPemasukan;
         id_pemasukan = Integer.parseInt(formId.getText());
                   catatanPemasukan = formCatatan.getText();
                    tanggal = formTanggal.getText();
-                   bulan = formBulan.getText();
+                   bulan = formBulan.getText().toLowerCase();
                    jumlahPemasukan = Float.parseFloat(formJumlah.getText());
           pemasukan db = new pemasukan(id_pemasukan, catatanPemasukan, tanggal, bulan, jumlahPemasukan);
           db.deletePemasukan(id_pemasukan);
@@ -380,7 +380,7 @@ float jumlahPemasukan;
                    id_pemasukan = Integer.parseInt(formId.getText());
                   catatanPemasukan = formCatatan.getText();
                    tanggal = formTanggal.getText();
-                   bulan = formBulan.getText();
+                   bulan = formBulan.getText().toLowerCase();
                    jumlahPemasukan = Float.parseFloat(formJumlah.getText());
         pemasukan db = new pemasukan(id_pemasukan, catatanPemasukan, tanggal, bulan, jumlahPemasukan);
         // TODO add your handling code here:
@@ -406,7 +406,7 @@ float jumlahPemasukan;
 
        catatanPemasukan = formCatatan.getText();
        tanggal =formTanggal.getText();
-       bulan = formBulan.getText();
+       bulan = formBulan.getText().toLowerCase();
        jumlahPemasukan = Float.parseFloat(formJumlah.getText());
        pemasukan mk = new pemasukan(WIDTH, catatanPemasukan, tanggal, bulan, jumlahPemasukan);
        mk.inputPemasukan(catatanPemasukan, tanggal, bulan, jumlahPemasukan);

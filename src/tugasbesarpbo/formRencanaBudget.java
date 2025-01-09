@@ -41,49 +41,7 @@ float jumlahRencana;
         formBulan.setText(null);
     }
     
-//     private void inputRencanaBudget() {
-//            try {
-//                String kategori = this.cb_rb.getSelectedItem().toString();
-//                 float jumlahBudget = Float.parseFloat(this.formJumlah.getText());
-//                String tanggalAwal =this.formTanggalAwal.getText();
-//                String tanggalAkhir =this.formTanggalAkhir.getText();
-//                String bulan = this.formBulan.getText();
-//               
-//                database.inputPemasukan(kategori, jumlahBudget, bulan, tanggalAwal, tanggalAkhir);
-//                JOptionPane.showMessageDialog(rootPane, "Data Berhasil Masuk");
-//            } catch (Exception e){
-//                JOptionPane.showMessageDialog(rootPane, "Data Belum Diisi" + e.getMessage());
-//            }
-//    }
-     
-//     private void updateRencanaBudget(){
-//        try {
-//            
-//              String sql = " UPDATE rencanaBudget SET  kategori = '" + cb_rb.getSelectedItem() + "', jumlahBudget = '" + formJumlah.getText() +"', tglAwal_RB = '" + formTanggalAwal.getText() + "', tglAkhir_RB = '" + formTanggalAkhir.getText() + "' WHERE id_rencanaBudget = '" + formId.getText() + "'";
-//            java.sql.Connection conn = new koneksiDatabase().configDB();
-//            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-//            pst.execute();
-//            JOptionPane.showMessageDialog(rootPane, "data berhasil di update");
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(rootPane, "data gagal di update" + e.getMessage());
-//        }
-//        readRencanaBudget();
-//        kosong();
-//    }
-     
-//     private void deleteRencanaBudget(){
-//        try {
-//            String sql ="delete from rencanaBudget where id_rencanaBudget = '"+formId.getText()+"'";
-//            java.sql.Connection conn = new koneksiDatabase().configDB();
-//            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-//            pst.execute();
-//            JOptionPane.showMessageDialog(this, "berhasil di hapus");
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, e.getMessage());
-//        }
-//        readRencanaBudget();
-//        kosong();
-//    }
+
      
             private void readRencanaBudget(){
          DefaultTableModel model = new DefaultTableModel();
@@ -427,7 +385,7 @@ float jumlahRencana;
         kategoriRb = cb_rb.getSelectedItem().toString();
         tanggalAwal = formTanggalAwal.getText();
         tanggalAkhir = formTanggalAkhir.getText();
-        bulanRencana = formBulan.getText();
+        bulanRencana = formBulan.getText().toLowerCase();
         jumlahRencana = Float.parseFloat(formJumlah.getText());
         
         interfaceSystem.interfaceRencanaBudget rencanaBudget = new controllerRencanaBudget();
@@ -441,7 +399,7 @@ float jumlahRencana;
         kategoriRb = cb_rb.getSelectedItem().toString();
         tanggalAwal = formTanggalAwal.getText();
         tanggalAkhir = formTanggalAkhir.getText();
-        bulanRencana = formBulan.getText();
+        bulanRencana = formBulan.getText().toLowerCase();
         jumlahRencana = Float.parseFloat(formJumlah.getText());
         interfaceSystem.interfaceRencanaBudget rencanaBudget = new controllerRencanaBudget();
         rencanaBudget.update(idRb, kategoriRb,tanggalAwal,tanggalAkhir,jumlahRencana, bulanRencana);

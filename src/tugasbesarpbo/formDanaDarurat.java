@@ -40,48 +40,7 @@ float jumlahDana;
         formJumlah.setText(null);
         
     }
-    
-//    private void inputDanaDarurat() {
-//            try {
-//                String catatanDanaDarurat = this.formCatatan.getText();
-//                String tanggal =this.formTanggal.getText();
-//                String bulan = this.formBulan.getText();
-//                float jumlahPemasukan = Float.parseFloat(this.formJumlah.getText());
-//                database.inputPemasukan(catatanDanaDarurat, tanggal, bulan ,jumlahPemasukan);
-//                JOptionPane.showMessageDialog(rootPane, "Data Berhasil Masuk");
-//            } catch (Exception e){
-//                JOptionPane.showMessageDialog(rootPane, "Data Belum Diisi" + e.getMessage());
-//            }
-//    }
-    
-//     private void updateDanaDarurat(){
-//        try {
-//            
-//              String sql = " UPDATE danaDarurat SET catatanDanaDarurat = '" + formCatatan.getText() + "', tanggal = '" + formTanggal.getText() + "', bulan = '" + formBulan.getText() + "' , jumlahDanaDarurat = '" + formJumlah.getText() + "' WHERE id_danaDarurat = '" + formId.getText() + "'";
-//            java.sql.Connection conn = new koneksiDatabase().configDB();
-//            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-//            pst.execute();
-//            JOptionPane.showMessageDialog(rootPane, "data berhasil di update");
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(rootPane, "data gagal di update" + e.getMessage());
-//        }
-//        readPemasukan();
-//        kosong();
-//    }
-     
-//      private void deletePemasukan(){
-//        try {
-//            String sql ="delete from danaDarurat where id_danaDarurat='" + formId.getText() + "'";
-//            java.sql.Connection conn = new koneksiDatabase().configDB();
-//            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-//            pst.execute();
-//            JOptionPane.showMessageDialog(this, "berhasil di hapus");
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, e.getMessage());
-//        }
-//        readPemasukan();
-//        kosong();
-//    }
+
       
      private void readPemasukan(){
          DefaultTableModel model = new DefaultTableModel();
@@ -363,7 +322,7 @@ float jumlahDana;
 //id_dana = Integer.parseInt(formId.getText());
 catatanDana = formCatatan.getText();
  tanggalDana = formTanggal.getText();
- bulanDana = formBulan.getText();
+ bulanDana = formBulan.getText().toLowerCase();
  jumlahDana = Float.parseFloat(formJumlah.getText());
         
 interfaceSystem.interfaceSiJagu danaDarurat = new controllerDanaDarurat();
@@ -376,7 +335,7 @@ kosong();
         id_dana = Integer.parseInt(formId.getText());
 catatanDana = formCatatan.getText();
  tanggalDana = formTanggal.getText();
- bulanDana = formBulan.getText();
+bulanDana = formBulan.getText().toLowerCase();
  jumlahDana = Float.parseFloat(formJumlah.getText());
         
 interfaceSystem.interfaceSiJagu danaDarurat = new controllerDanaDarurat();
@@ -398,7 +357,7 @@ kosong();
  id_dana = Integer.parseInt(formId.getText());
 catatanDana = formCatatan.getText();
  tanggalDana = formTanggal.getText();
- bulanDana = formBulan.getText();
+bulanDana = formBulan.getText().toLowerCase();
  jumlahDana = Float.parseFloat(formJumlah.getText());
         
 interfaceSystem.interfaceSiJagu danaDarurat = new controllerDanaDarurat();

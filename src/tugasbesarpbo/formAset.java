@@ -349,7 +349,7 @@ String bulanAset;
         namaAset = formNamaAset.getText();
        kategoriAset = combo_aset.getSelectedItem().toString();
        nilaiAset = Integer.parseInt(formNilaiAset.getText());
-       bulanAset = formBulan.getText();
+       bulanAset = formBulan.getText().toLowerCase();
        
        Aset as = new Aset(WIDTH, namaAset, kategoriAset, bulanAset, nilaiAset);
        as.inputAset(namaAset, kategoriAset, bulanAset, nilaiAset);
@@ -363,7 +363,7 @@ String bulanAset;
         namaAset = formNamaAset.getText();
        kategoriAset = combo_aset.getSelectedItem().toString();
        nilaiAset = Float.parseFloat(formNilaiAset.getText());
-       bulanAset = formBulan.getText();
+        bulanAset = formBulan.getText().toLowerCase();
        
        Aset as = new Aset(id_aset, namaAset, kategoriAset, bulanAset, nilaiAset);
        as.deleteAset(id_aset);
@@ -395,7 +395,7 @@ String bulanAset;
         namaAset = formNamaAset.getText();
        kategoriAset = combo_aset.getSelectedItem().toString();
        nilaiAset = Float.parseFloat(formNilaiAset.getText());
-       bulanAset = formBulan.getText();
+        bulanAset = formBulan.getText().toLowerCase();
        
        Aset as = new Aset(id_aset, namaAset, kategoriAset, bulanAset, nilaiAset); 
        as.updateAset(id_aset, namaAset, kategoriAset, bulanAset, nilaiAset);
