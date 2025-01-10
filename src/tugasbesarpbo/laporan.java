@@ -83,7 +83,7 @@ koneksiDatabase db = new koneksiDatabase();
     
     private void rataRata(){
          try {
-              String sql = "select round(sum(jumlahPengeluaran),3) from pengeluaran"; 
+              String sql = "select round(avg(jumlahPengeluaran),3) from pengeluaran"; 
 //                      " join danadarurat using(id_danaDarurat) " + 
 //                      "join rencanabudget using(id_rencanaBudget)";
             java.sql.Connection conn = new koneksiDatabase().configDB();
